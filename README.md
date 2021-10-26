@@ -1,17 +1,4 @@
-# Laravel SB Admin 2
-
-SB Admin 2 for Laravel.
-
-| Laravel Version | Branch |
-|-----------------|--------|
-| 8.0             | master |
-| 7.0             | v7.0   |
-| 6.0             | v6.0   |
-| 5.8             | v5.8   |
-
-## Requirements
-
-- PHP >= 7.2.0
+- PHP >= 5.1.0
 - BCMath PHP Extension
 - Ctype PHP Extension
 - JSON PHP Extension
