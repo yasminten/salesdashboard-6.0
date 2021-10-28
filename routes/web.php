@@ -42,6 +42,15 @@ Route::get('/customers/edit', 'CustomersController@edit')->name('cust-edit');
 //Subscriptions
 Route::get('/subscriptions', 'SubscriptionsController@index')->name('subscriptions');
 Route::get('/subscriptions/create', 'SubscriptionsController@create')->name('subscriptions.create');
+Route::put('/subscriptions/create', 'SubscriptionsController@create')->name('subscriptions.store');
+Route::get('/subscriptions/show/{id}', 'SubscriptionsController@show')->name('subscriptions.show');
+
+
+
+//Services
+Route::get('/services', 'ServiceController@index')->name('services');
+Route::get('/services/create', 'ServiceController@create')->name('services.create');
+Route::put('/services/create', 'ServiceController@store')->name('services.store');
 
 
 //Services

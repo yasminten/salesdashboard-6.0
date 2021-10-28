@@ -23,6 +23,9 @@ class ServiceDetail extends Model
         'network_type',
         'network_owner',
 
+        'rfs_date', //tanggal harapan service aktif - dari sisi customer
+        'activation_date', // actual live service - dari sisi NAP
+        'end_date', //untuk follow up tapi untuk status kedepannya based on Radius/API project mas hardy
 
         'created_by',
         'updated_by',
