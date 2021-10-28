@@ -12,7 +12,8 @@ class Subscription extends Model
     protected $fillable = [
         'member_id',
         'sales_id',
-        'service_id',        
+        'service_id',  
+
         'bandwidth',
         'bandwidth_type',
         'network_type',
@@ -22,8 +23,10 @@ class Subscription extends Model
         'colocation',
         'rack',
         'cage',
+        
         'status',
         'notes',
+
         'created_by',
         'updated_by',
     ];

@@ -10,9 +10,20 @@ class ServiceDetail extends Model
 
     protected $fillable = [           
         'member_id',
-        'service_id', 
+        'subscription_id', 
+
         'cid',
-        
+        'subscription_fee',
+        'installation_fee',
+        'additional_fee',
+        'notes',
+
+        'A_End',
+        'B_End',
+        'network_type',
+        'network_owner',
+
+
         'created_by',
         'updated_by',
     ];
