@@ -40,6 +40,8 @@ class HomeController extends Controller
             //...
         ];
 
-        return view('dashboard.index', compact('widget'));
+        // return view('dashboard.index', compact('widget'));
+        return view('home', compact('widget'));
+
     }
 }

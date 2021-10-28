@@ -32,13 +32,17 @@ Route::get('/about', function () {
 
 
 //Customers
-Route::get('/customers', 'CustomersController@index')->name('customer');
+Route::get('/customers', 'CustomersController@index')->name('customers');
 Route::get('/customers/show', 'CustomersController@show')->name('cust-show');
+Route::get('/customers/create', 'CustomersController@create')->name('cust-create');
+
 Route::get('/customers/edit', 'CustomersController@edit')->name('cust-edit');
 
 
 //Subscriptions
 Route::get('/subscriptions', 'SubscriptionsController@index')->name('subscriptions');
+Route::get('/subscriptions/create', 'SubscriptionsController@create')->name('subscriptions.create');
+
 
 //Services
 Route::get('/services', 'ServicesController@index')->name('services');

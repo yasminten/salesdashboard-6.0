@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
-    protected $table = 'mst_users';
+    protected $table = 'users';
 
     use Notifiable;
 

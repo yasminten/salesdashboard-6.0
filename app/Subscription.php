@@ -12,19 +12,23 @@ class Subscription extends Model
     protected $fillable = [
         'member_id',
         'sales_id',
-        'service_id',
-        'servicedetail_id',
-        'service_term',
-        'rfs_date',
+        'service_id',        
+        'bandwidth',
+        'bandwidth_type',
+        'network_type',
+        'memory',
+        'storage',
+        'processor',
+        'colocation',
+        'rack',
+        'cage',
         'status',
-        'start_date',
-        'end_date',
-        'is_renewal',
+        'notes',
         'created_by',
         'updated_by',
     ];
 
-    protected $dates = ['created_at', 'updated_at', 'rfs_date', 'start_date', 'end_date'];
+    protected $dates = ['created_at', 'updated_at'];
 
     protected $searchableColumns = [
         'Customer.member_code' => 20,
