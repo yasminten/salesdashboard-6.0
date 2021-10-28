@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Profile') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Customers') }}</h1>
 
     @if (session('success'))
         <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -25,28 +25,7 @@
 
     <div class="row">
 
-        <div class="col-lg-4 order-lg-2">
-
-            <div class="card shadow mb-4">
-                <div class="card-profile-image mt-4">
-                    <img src="https://source.unsplash.com/QAB-WJcbgJk/180x180" class="rounded-circle" alt="user-image">
-                </div>
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="text-center">
-                                <h5 class="font-weight-bold">{{  Auth::user()->fullName }}</h5>
-                                <p>Administrator</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-lg-8 order-lg-1">
+        <div class="col-lg-12 order-lg-1">
 
             <div class="card shadow mb-4">
 

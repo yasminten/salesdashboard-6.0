@@ -26,7 +26,7 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         $users = User::count();
-        $customers = Customer::all();
+        $customers = Customer::paginate(20);
 
         $drp_placeholder = $this->drpPlaceholder($request);
 
@@ -36,6 +36,11 @@ class CustomersController extends Controller
         ];
 
         return view('customers.index', compact('widget', 'customers', 'drp_placeholder'));
+    }
+
+    public function create()
+    {
+        return view('customers.create');
     }
 
     public function show($id)

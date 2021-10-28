@@ -1,4 +1,4 @@
-- PHP >= 5.1.0
+
 - BCMath PHP Extension
 - Ctype PHP Extension
 - JSON PHP Extension
