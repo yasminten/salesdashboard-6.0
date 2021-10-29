@@ -39,7 +39,7 @@
 
             <div class="card-body">
 
-                <table id="$customers" class="table table-bordered table-striped">
+                <table id="subscription" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Cust ID</th>
@@ -51,9 +51,10 @@
                     </thead>
 
                     <tbody>
+                    @foreach ($subscriptions as $subscription)
+
                         <tr>
 
-                            @foreach ($subscriptions as $subscription)
                             <td> {{ $subscription->customer->member_code}}</td>
                             <td>{{ $subscription->customer->name}}</td>
                             <td>{{ $subscription->service->name}}</td>

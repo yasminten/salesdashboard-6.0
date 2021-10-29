@@ -35,10 +35,8 @@
 
             <div class="card-body">
 
-                <form method="POST" action="{{ route('subscriptions.store') }}" autocomplete="off">
+                <form method="POST" action="{{ route('subscriptions.store') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <input type="hidden" name="_method" value="POST">
 
                     <div class="pl-lg-4">
                         <div class="row">
@@ -192,6 +190,7 @@
                     </div>
 
                     <!-- Button -->
+                    
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col text-center">
@@ -213,13 +212,13 @@
 
 
 @section('footer_scripts')
-    <!-- <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script> -->
+<!-- <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script> -->
 @endsection
 @section('footer_script_init')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            gymie.servicedetails();
-            gymie.subscription();
-        });
-    </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    gymie.servicedetails();
+    gymie.subscription();
+});
+</script>
 @endsection

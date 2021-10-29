@@ -14,6 +14,7 @@ use App\Customer;
 use App\CustomerType;
 use App\Subscription;
 use App\NetworkOwner;
+use App\Quotations;
 use App\ServiceDetail;
 use App\TerminationPoint;
 use App\TerminationPoints;
@@ -86,6 +87,22 @@ class SubscriptionsController extends Controller
         $date =Carbon::today();
 
         return view('subscriptions.create', compact('networkowners'));
+    }
+
+    public function createDetails($id)
+    {
+        $subscription = Subscription::findorfail($id)->first();
+
+        
+        return view('subscriptions._details', compact('subscription'));
+    }
+
+    public function createQuotations($id)
+    {
+        $subscription_id = $id;
+
+        
+        return view('subscriptions._quotation', compact('subscription_id'));
     }
 
     // public function store(Request $request)
@@ -239,11 +256,12 @@ class SubscriptionsController extends Controller
 
     public function store(Request $request)
     {
-
-        DB::beginTransaction();
         try{
+            $created_by = auth()->user()->id;
+            $updated_by = auth()->user()->id;
+
             // Storing subscription
-            $subscriptionData = [
+            $subscriptionData = Subscription::create([
                 'member_id' => $request->member_id,
                 'sales_id' => $request->sales_id,
                 'service_id' => $request->service_id,
@@ -258,28 +276,51 @@ class SubscriptionsController extends Controller
                 'cage'=> $request->cage,
                 'status'=> '1',
                 'notes' => $request->notes,
-            ];
+                'created_by' => $created_by,
+                'updated_by' => $updated_by
+            ]);
 
-            $subscription = new Subscription($subscriptionData);
-            $subscription->createdBy()->associate(Auth::user());
-            $subscription->updatedBy()->associate(Auth::user());
-            $subscription->save();
-
-            DB::commit();
 
             return redirect(action('SubscriptionsController@index'));
         } catch (\Exception $e) {
 
             dd($e);
-            DB::rollback();
 
             return redirect(action('SubscriptionsController@index'));
         }
     }
 
-    public function storeQuotation(Request $request)
+    public function storeQuotations(Request $request)
     {
+        try{
+            $created_by = auth()->user()->id;
+            $updated_by = auth()->user()->id;
 
+            $year =Carbon::today()->format('y');
+
+            $quotation_number = 'TEMP'.$year.$request->subscription_id;
+
+            // Storing quotation
+            $quotationData = Quotations::create([
+                'subscription_id' => $request->subscription_id,
+                'quotation_no' => $quotation_number,
+                'subscription_fee' => $request->subscription_fee,
+                'installation_fee'=> $request->installation_fee,
+                'additional_fee'=> $request->additional_fee,
+                'status'=> '1',
+                'notes' => $request->notes,
+                'created_by' => $created_by,
+                'updated_by' => $updated_by
+            ]);
+
+
+            return redirect(action('SubscriptionsController@index'));
+        } catch (\Exception $e) {
+
+            dd($e);
+
+            return redirect(action('SubscriptionsController@index'));
+        }
     }
 
     public function storeDetails(Request $request)
@@ -308,8 +349,9 @@ class SubscriptionsController extends Controller
     public function show($id)
     {
         $subscription = Subscription::findOrFail($id);
+        $quotations = Quotations::where('subscription_id','=',$id)->get();
 
-        return view('subscriptions.show', compact('subscription', 'servicedetail', 'charges_details', 'terminationPoint', 'settings'));
+        return view('subscriptions.show', compact('subscription', 'quotations', 'servicedetail', 'charges_details', 'terminationPoint', 'settings'));
     }
 
     public function showsubs($id)
