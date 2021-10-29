@@ -39,7 +39,7 @@
 
             <div class="card-body">
 
-                <table id="$customers" class="table table-bordered table-striped">
+                <table id="subscription" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Cust ID</th>
