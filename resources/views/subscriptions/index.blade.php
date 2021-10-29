@@ -58,6 +58,15 @@
                             <td>{{ $subscription->customer->name}}</td>
                             <td>{{ $subscription->service->name}}</td>
                             <td>{{ $subscription->status}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info">
+                                        <a href="{{ action('SubscriptionsController@show',['id' => $subscription->id]) }}">
+                                            View
+                                        </a>
+                                    </button>
+                                </div>
+                            </td>
 
                             @endforeach
                         </tr>

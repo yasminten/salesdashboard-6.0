@@ -41,8 +41,7 @@
                         <tr>
 
                             <th class="text-center">Service Name</th>
-                            <th class="text-center">Service Description</th>
-                            <th class="text-center">Actions</th>
+                            <th class="text-center">Service Code</th>
                         </tr>
                     </thead>
 
@@ -51,25 +50,6 @@
                         <tr>
                             <td class="text-center">{{ $service->name}}</td>
                             <td class="text-center">{{ $service->description}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-info">Actions</button>
-                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        @permission(['manage-gymie','manage-services','edit-service'])
-                                        <li>
-                                            <a href="{{ action('ServicesController@edit',['id' => $service->id]) }}">
-                                                Edit details
-                                            </a>
-                                        </li>
-                                        @endpermission
-                                    </ul>
-                                </div>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

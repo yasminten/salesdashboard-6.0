@@ -45,16 +45,12 @@
                             <div class="col-lg-6">
                                 <div class="form-group focused">
                                     <?php
-                                        $members = App\Customer::where('status', '=', '1')->get();
-
-                                        $memberArray = [];
-                                        foreach ($members as $member) {
-                                            $memberArray[$member['id']] = $member['member_code'].' - '.$member['name'];
-                                        }
+                                        $customer = App\Customer::where('id', '=', $subscription->member_id)->get();
                                     ?>
                                     {!! Form::label('member_id','Customers Code') !!}
-                                    {!! Form::text('sales_id',$subscription->member_id,['class'=>'form-control', 'id' =>
-                                    'sales_id','readonly' =>
+                                    {!! Form::text('member_id',$subscription->member_id,['class'=>'form-control', 'id'
+                                    =>
+                                    'member_id','readonly' =>
                                     'readonly']) !!}
                                 </div>
                             </div>
@@ -82,11 +78,8 @@
                                     {!! Form::label('service_id','Services') !!}
 
 
-                                    {!!
-                                    Form::select('service_id',$serviceArray,$subscription->service_id,['class'=>'form-control
-                                    selectpicker show-tick
-                                    show-menu-arrow','id'=>'service_id','data-live-search' => 'false','readonly' =>
-                                    'readonly' ]) !!}
+                                    {!! Form::text('service_id',$subscription->service_id,['class'=>'form-control',
+                                    'id'=>'service_id','readonly' =>'readonly' ]) !!}
                                 </div>
                             </div>
                         </div>
@@ -96,18 +89,17 @@
                                 <div class="col-sm-6">
                                     <div class="form-group focused">
                                         {!! Form::label('bandwidth','Bandwidth') !!}
-                                        {!! Form::text('bandwidth',null,['class'=>'form-control', 'id' =>
-                                        'Waris_contact'])
-                                        !!}
+
+                                        {!! Form::text('bandwidth',$subscription->bandwidth,['class'=>'form-control',
+                                        'id'=>'bandwidth','readonly' =>'readonly' ]) !!}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group focused">
                                         {!! Form::label('bandwidth_type','') !!}
-                                        {!! Form::select('bandwidth_type',array('Mbps' => 'Mbps', 'Gbps' =>
-                                        'Gbps'),null,['class'=>'form-control
-                                        selectpicker
-                                        show-tick show-menu-arrow', 'id' => 'bandwidth_type']) !!}
+                                        {!!
+                                        Form::text('bandwidth_type',$subscription->bandwidth_type,['class'=>'form-control',
+                                        'id'=>'bandwidth_type','readonly' =>'readonly' ]) !!}
 
                                     </div>
                                 </div>
@@ -119,11 +111,9 @@
                                 <div class="col-sm-12">
                                     <div class="form-group focused">
                                         {!! Form::label('network_type','Network Type') !!}
-
-                                        {!! Form::select('network_type',array('Local' => 'Local', 'International' =>
-                                        'International', 'Mix' => 'Mix'),null,['class'=>'form-control
-                                        selectpicker
-                                        show-tick show-menu-arrow', 'id' => 'network_type']) !!}
+                                        {!!
+                                        Form::text('network_type',$subscription->network_type,['class'=>'form-control',
+                                        'id'=>'network_type','readonly' =>'readonly' ]) !!}
 
                                     </div>
                                 </div>
@@ -135,27 +125,27 @@
                                 <div class="col-sm-4">
                                     <div class="form-group focused">
                                         {!! Form::label('memory','Memory') !!}
-                                        {!! Form::text('memory',null,['class'=>'form-control', 'id' =>
-                                        'memory'])
-                                        !!}
+                                        {!! Form::text('memory',$subscription->memory,['class'=>'form-control',
+                                        'id'=>'memory','readonly' =>'readonly' ]) !!}
+
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group focused">
                                         {!! Form::label('storage','Storage') !!}
-                                        {!! Form::text('storage',null,['class'=>'form-control', 'id' =>
-                                        'storage'])
-                                        !!}
+                                        {!! Form::text('storage',$subscription->storage,['class'=>'form-control',
+                                        'id'=>'storage','readonly' =>'readonly' ]) !!}
+
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group focused">
                                         {!! Form::label('processor','Processor') !!}
+                                        {!! Form::text('processor',$subscription->processor,['class'=>'form-control',
+                                        'id'=>'processor','readonly' =>'readonly' ]) !!}
 
-                                        {!! Form::text('processor',null,['class'=>'form-control', 'id' =>
-                                        'processor']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -166,26 +156,27 @@
                                 <div class="col-sm-4">
                                     <div class="form-group focused">
                                         {!! Form::label('colocation','Colocation') !!}
+                                        {!! Form::text('colocation',$subscription->colocation,['class'=>'form-control',
+                                        'id'=>'colocation','readonly' =>'readonly' ]) !!}
 
-                                        {!! Form::text('colocation',null,['class'=>'form-control', 'id' =>
-                                        'colocation']) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group focused">
                                         {!! Form::label('rack','Rack') !!}
-                                        {!! Form::text('rack',null,['class'=>'form-control', 'id' => 'rack'])
-                                        !!}
+                                        {!! Form::text('rack',$subscription->rack,['class'=>'form-control',
+                                        'id'=>'rack','readonly' =>'readonly' ]) !!}
+
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group focused">
                                         {!! Form::label('cage','Cage') !!}
+                                        {!! Form::text('cage',$subscription->cage,['class'=>'form-control',
+                                        'id'=>'cage','readonly' =>'readonly' ]) !!}
 
-                                        {!! Form::text('cage',null,['class'=>'form-control', 'id' => 'cage'])
-                                        !!}
                                     </div>
                                 </div>
                             </div>
@@ -217,6 +208,128 @@
             </div>
 
             <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group focused">
+                            {!! Form::label('cid','Circuit ID') !!}
+                            {!! Form::text('cid',null,['class'=>'form-control',
+                            'id'=>'cid','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('network_type','Network Type') !!}
+                            {!! Form::text('network_type',null,['class'=>'form-control',
+                            'id'=>'network_type','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('network_owner','Network Owner') !!}
+                            {!! Form::text('network_owner',null,['class'=>'form-control',
+                            'id'=>'network_owner','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group focused">
+                            {!! Form::label('rfs_date','RFS Date') !!}
+                            {!! Form::text('rfs_date',null,['class'=>'form-control',
+                            'id'=>'rfs_date','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group focused">
+                            {!! Form::label('activation_date','Activation Date') !!}
+                            {!! Form::text('activation_date',null,['class'=>'form-control',
+                            'id'=>'activation_date','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group focused">
+                            {!! Form::label('end_date','End Date') !!}
+                            {!! Form::text('end_date',null,['class'=>'form-control',
+                            'id'=>'end_date','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('subscription_fee','Subscription Fee') !!}
+                            {!! Form::text('subscription_fee',null,['class'=>'form-control',
+                            'id'=>'subscription_fee','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('installation_fee','Installation Fee') !!}
+                            {!! Form::text('installation_fee',null,['class'=>'form-control',
+                            'id'=>'installation_fee','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('additional_fee','Additional Fee') !!}
+                            {!! Form::text('additional_fee',null,['class'=>'form-control',
+                            'id'=>'additional_fee','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('notes','Notes') !!}
+                            {!! Form::text('notes',null,['class'=>'form-control',
+                            'id'=>'notes','readonly' =>'readonly' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('A_End','A-End') !!}
+                            {!! Form::textarea('A_End',null,['class'=>'form-control', 'id' => 'A_End', 'rows' =>
+                            5,'readonly' =>'readonly'])
+                            !!}
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('B__End','B-End') !!}
+                            {!! Form::textarea('B__End',null,['class'=>'form-control', 'id' => 'B__End', 'rows' =>
+                            5,'readonly' =>'readonly'])
+                            !!}
+                        </div>
+                    </div>
+                </div>
+
+
 
 
                 <!-- Button -->
@@ -250,6 +363,8 @@
             <div class="card-body">
 
 
+
+
                 <!-- Button -->
                 <div class="pl-lg-4">
                     <div class="row">
@@ -273,7 +388,6 @@
 @section('footer_script_init')
 <script type="text/javascript">
 $(document).ready(function() {
-    gymie.servicedetails();
     gymie.subscription();
 });
 </script>
