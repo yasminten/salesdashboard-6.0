@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -25,12 +26,17 @@ class ServicesController extends Controller
     public function index()
     {
         $users = User::count();
+        $services = Service::all();
 
         $widget = [
             'users' => $users,
             //...
         ];
 
-        return view('customers.index', compact('widget'));
+        return view('services.index', compact('widget', 'services'));
+    }
+
+    public function edit($id){
+
     }
 }

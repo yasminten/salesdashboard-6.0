@@ -25,6 +25,10 @@ class CreateTrnServiceDetailsTable extends Migration
             $table->text('B_End', 65535)->comment('B_End location');
             $table->string('network_type',20);
             $table->integer('network_owner')->index('FK_trn_service_details_mst_network_owners_3');
+            $table->date('rfs_date')->comment('ready for service dates');
+            $table->date('activation_date');
+            $table->date('end_date');
+            //update di sql / database
             $table->timestamps();
             $table->integer('created_by')->unsigned()->index('FK_trn_service_details_users_4');
             $table->integer('updated_by')->unsigned()->index('FK_trn_service_details_users_5');

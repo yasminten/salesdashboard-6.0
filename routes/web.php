@@ -48,11 +48,10 @@ Route::get('/subscriptions/show/{id}', 'SubscriptionsController@show')->name('su
 
 
 //Services
-Route::get('/services', 'ServiceController@index')->name('services');
-Route::get('/services/create', 'ServiceController@create')->name('services.create');
-Route::put('/services/create', 'ServiceController@store')->name('services.store');
-
-
-//Services
 Route::get('/services', 'ServicesController@index')->name('services');
+Route::get('/services/create', 'ServicesController@create')->name('services.create');
+Route::put('/services/create', 'ServicesController@store')->name('services.store');
+Route::put('/services/edit/{id}', 'ServicesController@edit')->name('services.edit');
+
+
 
