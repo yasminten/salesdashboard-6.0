@@ -32,26 +32,30 @@ Route::get('/about', function () {
 
 
 //Customers
-Route::get('/customers', 'CustomersController@index')->name('customers');
-Route::get('/customers/show', 'CustomersController@show')->name('cust-show');
-Route::get('/customers/create', 'CustomersController@create')->name('cust-create');
-
-Route::get('/customers/edit', 'CustomersController@edit')->name('cust-edit');
-
+Route::prefix('subscriptions')->group(function () {
+    Route::get('/customers', 'CustomersController@index')->name('customers');
+    Route::get('/customers/show', 'CustomersController@show')->name('cust-show');
+    Route::get('/customers/create', 'CustomersController@create')->name('cust-create');
+    Route::get('/customers/edit/{id}', 'CustomersController@edit')->name('cust-edit');
+});
 
 //Subscriptions
-Route::get('/subscriptions', 'SubscriptionsController@index')->name('subscriptions');
-Route::get('/subscriptions/create', 'SubscriptionsController@create')->name('subscriptions.create');
-Route::put('/subscriptions/create', 'SubscriptionsController@create')->name('subscriptions.store');
-Route::get('/subscriptions/show/{id}', 'SubscriptionsController@show')->name('subscriptions.show');
-
+Route::prefix('subscriptions')->group(function () {
+    Route::get('/', 'SubscriptionsController@index')->name('subscriptions');
+    Route::get('/create', 'SubscriptionsController@create')->name('subscriptions.create');
+    Route::post('/create', 'SubscriptionsController@store')->name('subscriptions.store');
+    Route::get('/details/{id}', 'SubscriptionsController@createDetails')->name('subscriptions.details');
+    Route::post('/details/{id}', 'SubscriptionsController@storeDetails')->name('subscriptions.storedetails');
+    Route::get('/quotations/{id}', 'SubscriptionsController@createQuotations')->name('subscriptions.quotations');
+    Route::post('/quotations/{id}', 'SubscriptionsController@storeQuotations')->name('subscriptions.storequotations');
+    Route::get('/show/{id}', 'SubscriptionsController@show')->name('subscriptions.show');
+});
 
 
 //Services
-Route::get('/services', 'ServicesController@index')->name('services');
-Route::get('/services/create', 'ServicesController@create')->name('services.create');
-Route::put('/services/create', 'ServicesController@store')->name('services.store');
-Route::put('/services/edit/{id}', 'ServicesController@edit')->name('services.edit');
-
-
-
+Route::prefix('services')->group(function () {
+    Route::get('/', 'ServicesController@index')->name('services');
+    Route::get('/create', 'ServicesController@create')->name('services.create');
+    Route::put('/create', 'ServicesController@store')->name('services.store');
+    Route::put('/edit/{id}', 'ServicesController@edit')->name('services.edit');
+});

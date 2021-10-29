@@ -51,9 +51,10 @@
                     </thead>
 
                     <tbody>
+                    @foreach ($subscriptions as $subscription)
+
                         <tr>
 
-                            @foreach ($subscriptions as $subscription)
                             <td> {{ $subscription->customer->member_code}}</td>
                             <td>{{ $subscription->customer->name}}</td>
                             <td>{{ $subscription->service->name}}</td>

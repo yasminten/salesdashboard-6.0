@@ -88,6 +88,22 @@ class SubscriptionsController extends Controller
         return view('subscriptions.create', compact('networkowners'));
     }
 
+    public function createDetails($id)
+    {
+        $subscription = Subscription::findorfail($id)->first();
+
+        
+        return view('subscriptions._details', compact('subscription'));
+    }
+
+    public function createQuotations($id)
+    {
+        $subscription = Subscription::findorfail($id)->first();
+
+        
+        return view('subscriptions._quotation', compact('subscription'));
+    }
+
     // public function store(Request $request)
     // {
     //     DB::beginTransaction();
@@ -239,11 +255,12 @@ class SubscriptionsController extends Controller
 
     public function store(Request $request)
     {
-
-        DB::beginTransaction();
         try{
+            $created_by = auth()->user()->id;
+            $updated_by = auth()->user()->id;
+
             // Storing subscription
-            $subscriptionData = [
+            $subscriptionData = Subscription::create([
                 'member_id' => $request->member_id,
                 'sales_id' => $request->sales_id,
                 'service_id' => $request->service_id,
@@ -258,20 +275,15 @@ class SubscriptionsController extends Controller
                 'cage'=> $request->cage,
                 'status'=> '1',
                 'notes' => $request->notes,
-            ];
+                'created_by' => $created_by,
+                'updated_by' => $updated_by
+            ]);
 
-            $subscription = new Subscription($subscriptionData);
-            $subscription->createdBy()->associate(Auth::user());
-            $subscription->updatedBy()->associate(Auth::user());
-            $subscription->save();
-
-            DB::commit();
 
             return redirect(action('SubscriptionsController@index'));
         } catch (\Exception $e) {
 
             dd($e);
-            DB::rollback();
 
             return redirect(action('SubscriptionsController@index'));
         }

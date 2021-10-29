@@ -33,175 +33,148 @@
                 <h6 class="m-0 font-weight-bold text-primary">Subscriptions Details</h6>
             </div>
 
+
+
             <div class="card-body">
 
-                <form method="POST" action="{{ route('profile.update') }}" autocomplete="off">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group focused">
+                            {!! Form::label('subscription_id','Subscription ID') !!}
+                            {!! Form::text('subscription_id',$subscription->id,['class'=>'form-control',
+                            'id'=>'subscription_id','readonly' =>'readonly' ]) !!}
 
-                    <input type="hidden" name="_method" value="PUT">
-
-                    <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group focused">
-                                    <?php
-                                        $members = App\Customer::where('status', '=', '1')->get();
-
-                                        $memberArray = [];
-                                        foreach ($members as $member) {
-                                            $memberArray[$member['id']] = $member['member_code'].' - '.$member['name'];
-                                        }
-                                    ?>
-                                    {!! Form::label('member_id','Customers Code') !!}
-                                    {!! Form::select('member_id',$memberArray,null,['class'=>'form-control
-                                    selectpicker show-tick
-                                    show-menu-arrow','id'=>'member_id','data-live-search' => 'true']) !!}
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="form-group focused">
-                                    {!! Form::label('sales_id','Sales Name') !!}
-                                    {!! Form::text('sales_id',Auth::user()->name,['class'=>'form-control', 'id' =>
-                                    'sales_id','readonly' =>
-                                    'readonly']) !!}
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group focused">
-                                    <?php $services = App\Service::all();
-                                    $serviceArray = [];
-                                    foreach ($services as $service) {
-                                        $serviceArray[$service['id']] = $service['name'];
-                                    }
-                                    ?>
-                                    {!! Form::label('service_id','Services') !!}
-
-
-                                    {!! Form::select('service_id',$serviceArray,null,['class'=>'form-control
-                                    selectpicker show-tick
-                                    show-menu-arrow','id'=>'service_id','data-live-search' => 'true']) !!}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="generalservice">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group focused">
-                                        {!! Form::label('bandwidth','Bandwidth') !!}
-                                        {!! Form::text('bandwidth',null,['class'=>'form-control', 'id' =>
-                                        'Waris_contact'])
-                                        !!}
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group focused">
-                                        {!! Form::label('bandwidth_type','') !!}
-                                        {!! Form::select('bandwidth_type',array('Mbps' => 'Mbps', 'Gbps' =>
-                                        'Gbps'),null,['class'=>'form-control
-                                        selectpicker
-                                        show-tick show-menu-arrow', 'id' => 'bandwidth_type']) !!}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="matrixnet">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group focused">
-                                        {!! Form::label('network_type','Network Type') !!}
-
-                                        {!! Form::select('network_type',array('Local' => 'Local', 'International' =>
-                                        'International', 'Mix' => 'Mix'),null,['class'=>'form-control
-                                        selectpicker
-                                        show-tick show-menu-arrow', 'id' => 'network_type']) !!}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="matrixcloud">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group focused">
-                                        {!! Form::label('memory','Memory') !!}
-                                        {!! Form::text('memory',null,['class'=>'form-control', 'id' =>
-                                        'memory'])
-                                        !!}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group focused">
-                                        {!! Form::label('storage','Storage') !!}
-                                        {!! Form::text('storage',null,['class'=>'form-control', 'id' =>
-                                        'storage'])
-                                        !!}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group focused">
-                                        {!! Form::label('processor','Processor') !!}
-
-                                        {!! Form::text('processor',null,['class'=>'form-control', 'id' =>
-                                        'processor']) !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="matrixdatacenter">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group focused">
-                                        {!! Form::label('colocation','Colocation') !!}
-
-                                        {!! Form::text('colocation',null,['class'=>'form-control', 'id' =>
-                                        'colocation']) !!}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group focused">
-                                        {!! Form::label('rack','Rack') !!}
-                                        {!! Form::text('rack',null,['class'=>'form-control', 'id' => 'rack'])
-                                        !!}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group focused">
-                                        {!! Form::label('cage','Cage') !!}
-
-                                        {!! Form::text('cage',null,['class'=>'form-control', 'id' => 'cage'])
-                                        !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Button -->
-                    <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Create Subscription</button>
-                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group focused">
+                            {!! Form::label('cid','Circuit ID') !!}
+                            {!! Form::text('cid',null,['class'=>'form-control',
+                            'id'=>'cid' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('network_type','Network Type') !!}
+                            {!! Form::text('network_type',null,['class'=>'form-control',
+                            'id'=>'network_type' ]) !!}
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('network_owner','Network Owner') !!}
+                            {!! Form::text('network_owner',null,['class'=>'form-control',
+                            'id'=>'network_owner' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group focused">
+                            {!! Form::label('rfs_date','RFS Date') !!}
+                            {!! Form::text('rfs_date',null,['class'=>'form-control',
+                            'id'=>'rfs_date' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group focused">
+                            {!! Form::label('activation_date','Activation Date') !!}
+                            {!! Form::text('activation_date',null,['class'=>'form-control',
+                            'id'=>'activation_date' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group focused">
+                            {!! Form::label('end_date','End Date') !!}
+                            {!! Form::text('end_date',null,['class'=>'form-control',
+                            'id'=>'end_date' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('subscription_fee','Subscription Fee') !!}
+                            {!! Form::text('subscription_fee',null,['class'=>'form-control',
+                            'id'=>'subscription_fee' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('installation_fee','Installation Fee') !!}
+                            {!! Form::text('installation_fee',null,['class'=>'form-control',
+                            'id'=>'installation_fee' ]) !!}
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('additional_fee','Additional Fee') !!}
+                            {!! Form::text('additional_fee',null,['class'=>'form-control',
+                            'id'=>'additional_fee' ]) !!}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('notes','Notes') !!}
+                            {!! Form::text('notes',null,['class'=>'form-control',
+                            'id'=>'notes' ]) !!}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('A_End','A-End') !!}
+                            {!! Form::textarea('A_End',null,['class'=>'form-control', 'id' =>
+                            'A_End', 'rows' =>
+                            5])
+                            !!}
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group focused">
+                            {!! Form::label('B__End','B-End') !!}
+                            {!! Form::textarea('B__End',null,['class'=>'form-control', 'id' =>
+                            'B__End', 'rows' =>
+                            5])
+                            !!}
+                        </div>
+                    </div>
+                </div>
+
+
 
             </div>
+
 
         </div>
 
@@ -209,17 +182,37 @@
 
 </div>
 
+</div>
+
+<!-- Button -->
+<div class="pl-lg-4">
+    <div class="row">
+        <div class="col text-center">
+            <button type="submit" class="btn btn-primary">Create Subscription</button>
+        </div>
+    </div>
+</div>
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 @endsection
 
 
 @section('footer_scripts')
-    <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script>
 @endsection
 @section('footer_script_init')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            gymie.servicedetails();
-            gymie.subscription();
-        });
-    </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    gymie.servicedetails();
+    gymie.subscription();
+});
+</script>
 @endsection
