@@ -1,6 +1,4 @@
-## Requirements
 
-- PHP >= 6.2.0
 - BCMath PHP Extension
 - Ctype PHP Extension
 - JSON PHP Extension
