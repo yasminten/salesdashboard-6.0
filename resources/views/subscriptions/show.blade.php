@@ -211,7 +211,7 @@
             <div class="card-body">
                 <?php $servicedetails = App\ServiceDetail::where('subscription_id', '=', $subscription->id)->first(); ?>
 
-               
+
                 <!-- Detail -->
                 <div id="subscriptiondetail">
                     <div class="row">
@@ -358,6 +358,8 @@
             <div class="card-body">
 
 
+                @if($quotations->count() == 0)
+                <h4 class="text-center padding-top-15">Sorry! No records found</h4>
 
 
                 <!-- Button -->
@@ -374,6 +376,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
             </div>
 

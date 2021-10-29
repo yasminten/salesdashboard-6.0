@@ -23,8 +23,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Profile
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::put('/profile', 'ProfileController@update')->name('profile.update');
+Route::prefix('profile')->group(function () {
+    Route::get('/', 'ProfileController@index')->name('profile');
+    Route::put('/', 'ProfileController@update')->name('profile.update');
+});
 
 Route::get('/about', function () {
     return view('about');
@@ -32,11 +34,11 @@ Route::get('/about', function () {
 
 
 //Customers
-Route::prefix('subscriptions')->group(function () {
-    Route::get('/customers', 'CustomersController@index')->name('customers');
-    Route::get('/customers/show', 'CustomersController@show')->name('cust-show');
-    Route::get('/customers/create', 'CustomersController@create')->name('cust-create');
-    Route::get('/customers/edit/{id}', 'CustomersController@edit')->name('cust-edit');
+Route::prefix('customers')->group(function () {
+    Route::get('/', 'CustomersController@index')->name('customers');
+    Route::get('/show', 'CustomersController@show')->name('cust-show');
+    Route::get('/create', 'CustomersController@create')->name('cust-create');
+    Route::get('/edit/{id}', 'CustomersController@edit')->name('cust-edit');
 });
 
 //Subscriptions
@@ -45,9 +47,9 @@ Route::prefix('subscriptions')->group(function () {
     Route::get('/create', 'SubscriptionsController@create')->name('subscriptions.create');
     Route::post('/create', 'SubscriptionsController@store')->name('subscriptions.store');
     Route::get('/details/{id}', 'SubscriptionsController@createDetails')->name('subscriptions.details');
-    Route::post('/details/{id}', 'SubscriptionsController@storeDetails')->name('subscriptions.storedetails');
+    Route::post('/details', 'SubscriptionsController@storeDetails')->name('subscriptions.storedetails');
     Route::get('/quotations/{id}', 'SubscriptionsController@createQuotations')->name('subscriptions.quotations');
-    Route::post('/quotations/{id}', 'SubscriptionsController@storeQuotations')->name('subscriptions.storequotations');
+    Route::post('/quotations', 'SubscriptionsController@storeQuotations')->name('subscriptions.storequotations');
     Route::get('/show/{id}', 'SubscriptionsController@show')->name('subscriptions.show');
 });
 
