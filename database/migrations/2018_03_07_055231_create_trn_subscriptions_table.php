@@ -16,16 +16,20 @@ class CreateTrnSubscriptionsTable extends Migration
             $table->integer('id', true);
             $table->integer('member_id')->index('FK_trn_subscriptions_mst_customers_1')->comment('links to unique record id of mst_customers');
             $table->string('sales_id',50);
-            // $table->integer('invoice_id')->index('FK_trn_subscriptions_trn_invoice')->comment('links to unique record id of trn_invoice');
-            // $table->integer('plan_id')->index('FK_trn_subscriptions_mst_plans_2')->comment('links to unique record if of mst_plans');
-            $table->integer('servicedetail_id')->index('FK_trn_subscriptions_trn_service_details')->comment('links to unique record id of trn_service_details');
             $table->integer('service_id')->index('FK_trn_subscriptions_mst_services_3')->comment('links to unique record if of mst_services');
-            $table->integer('service_term')->comment('billing terms');
-            $table->date('start_date')->comment('start date of subscription');
-            $table->date('end_date')->comment('end date of subscription');
-            $table->date('rfs_date')->comment('RFS date of subscription');
-            $table->boolean('status')->comment('0 = expired, 1 = ongoing, 2 = renewed, 3 = canceled');
-            $table->boolean('is_renewal')->comment('0= false , 1=true');
+            
+            $table->integer('bandwidth')->comment('service capacity');
+            $table->string('bandwidth_type', 20);
+            $table->string('network_type', 20);
+            $table->integer('memory')->comment('memory capacity');
+            $table->integer('storage')->comment('storage capacity');
+            $table->integer('processor')->comment('processor capacity');
+            $table->integer('colocation')->comment('colocation capacity');
+            $table->string('rack', 50);
+            $table->integer('cage')->comment('cage capacity');
+
+            $table->integer('status');
+            $table->string('notes', 50);
             $table->timestamps();
             $table->integer('created_by')->unsigned()->index('FK_trn_subscriptions_mst_staff_4');
             $table->integer('updated_by')->unsigned()->index('FK_trn_subscriptions_mst_staff_5');

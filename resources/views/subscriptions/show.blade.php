@@ -30,15 +30,15 @@
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Subscriptions Details</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Subscription</h6>
             </div>
 
             <div class="card-body">
 
-                <form method="POST" action="{{ route('subscriptions.store') }}" autocomplete="off">
+                <form method="POST" action="" autocomplete="off">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <input type="hidden" name="_method" value="POST">
+                    <input type="hidden" name="_method" value="PUT">
 
                     <div class="pl-lg-4">
                         <div class="row">
@@ -53,16 +53,16 @@
                                         }
                                     ?>
                                     {!! Form::label('member_id','Customers Code') !!}
-                                    {!! Form::select('member_id',$memberArray,null,['class'=>'form-control
-                                    selectpicker show-tick
-                                    show-menu-arrow','id'=>'member_id','data-live-search' => 'true']) !!}
+                                    {!! Form::text('sales_id',$subscription->member_id,['class'=>'form-control', 'id' =>
+                                    'sales_id','readonly' =>
+                                    'readonly']) !!}
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group focused">
                                     {!! Form::label('sales_id','Sales Name') !!}
-                                    {!! Form::text('sales_id',Auth::user()->name,['class'=>'form-control', 'id' =>
+                                    {!! Form::text('sales_id',$subscription->sales_id,['class'=>'form-control', 'id' =>
                                     'sales_id','readonly' =>
                                     'readonly']) !!}
 
@@ -82,9 +82,11 @@
                                     {!! Form::label('service_id','Services') !!}
 
 
-                                    {!! Form::select('service_id',$serviceArray,null,['class'=>'form-control
+                                    {!!
+                                    Form::select('service_id',$serviceArray,$subscription->service_id,['class'=>'form-control
                                     selectpicker show-tick
-                                    show-menu-arrow','id'=>'service_id','data-live-search' => 'true']) !!}
+                                    show-menu-arrow','id'=>'service_id','data-live-search' => 'false','readonly' =>
+                                    'readonly' ]) !!}
                                 </div>
                             </div>
                         </div>
@@ -191,15 +193,71 @@
 
                     </div>
 
-                    <!-- Button -->
-                    <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Create Subscription</button>
-                            </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-lg-12 order-lg-1">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Subscription Detail</h6>
+            </div>
+
+            <div class="card-body">
+
+
+                <!-- Button -->
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-primary">Add Subscription Detail</button>
                         </div>
                     </div>
-                </form>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12 order-lg-1">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Quotation History</h6>
+            </div>
+
+            <div class="card-body">
+
+
+                <!-- Button -->
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-primary">Generate Quotation</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -212,14 +270,11 @@
 @endsection
 
 
-@section('footer_scripts')
-    <!-- <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script> -->
-@endsection
 @section('footer_script_init')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            gymie.servicedetails();
-            gymie.subscription();
-        });
-    </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    gymie.servicedetails();
+    gymie.subscription();
+});
+</script>
 @endsection

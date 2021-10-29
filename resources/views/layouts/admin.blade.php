@@ -76,6 +76,14 @@
             </a>
         </li>
 
+         <!-- Nav Item - Services -->
+         <li class="nav-item {{ Nav::isRoute('services') }}">
+            <a class="nav-link" href="{{ route('services') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>{{ __('Services') }}</span>
+            </a>
+        </li>
+
         <!-- Nav Item - About -->
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">

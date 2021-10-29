@@ -212,9 +212,6 @@
 @endsection
 
 
-@section('footer_scripts')
-    <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script>
-@endsection
 @section('footer_script_init')
     <script type="text/javascript">
         $(document).ready(function () {

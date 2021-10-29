@@ -14,21 +14,24 @@ class CreateTrnServiceDetailsTable extends Migration
     {
         Schema::create('trn_service_details', function (Blueprint $table) {
             $table->integer('id', true)->comment('Unique Record Id for system');
-            $table->integer('member_id')->index('FK_trn_service_details_mst_customers_1')->comment('links to unique record id of mst_customers');
-            $table->integer('service_id')->index('FK_trn_service_details_mst_service_2')->comment('links to unique record id of mst_service');
+            $table->integer('subscription_id')->index('FK_trn_service_details_trn_subscriptions_1')->comment('links to unique record id of trn_subscriptions');
+            $table->integer('quotation_id')->index('FK_trn_service_details_trn_quotations_2')->comment('links to unique record id of trn_quotations');
             $table->string('cid', 50);
-            $table->integer('bandwidth')->comment('service capacity');
-            $table->integer('memory')->comment('memory capacity');
-            $table->integer('storage')->comment('storage capacity');
-            $table->integer('processor')->comment('processor capacity');
-            $table->integer('colocation')->comment('colocation capacity');
-            $table->integer('cage')->comment('cage capacity');
-            $table->string('rack', 50);
-            $table->string('bandwidth_type', 20);
-            $table->string('network_type', 20);
+            $table->integer('subscription_fee');
+            $table->integer('installation_fee');
+            $table->integer('additional_fee');
+            $table->string('notes');
+            $table->text('A_End', 65535)->comment('A_End location');
+            $table->text('B_End', 65535)->comment('B_End location');
+            $table->string('network_type',20);
+            $table->integer('network_owner')->index('FK_trn_service_details_mst_network_owners_3');
+            $table->date('rfs_date')->comment('ready for service dates');
+            $table->date('activation_date');
+            $table->date('end_date');
+            //update di sql / database
             $table->timestamps();
-            $table->integer('created_by')->unsigned()->index('FK_trn_service_details_users_3');
-            $table->integer('updated_by')->unsigned()->index('FK_trn_service_details_users_4');
+            $table->integer('created_by')->unsigned()->index('FK_trn_service_details_users_4');
+            $table->integer('updated_by')->unsigned()->index('FK_trn_service_details_users_5');
         });
     }
 

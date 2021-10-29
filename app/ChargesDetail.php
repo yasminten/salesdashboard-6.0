@@ -16,10 +16,7 @@ class ChargesDetail extends Model
 
     protected $fillable = [
         'servicedetail_id',
-        'subscription_fee',
-        'installation_fee',
-        'additional_fee',
-        'notes',
+        
         'created_by',
         'updated_by',
     ];
