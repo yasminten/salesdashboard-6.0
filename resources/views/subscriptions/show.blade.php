@@ -391,9 +391,17 @@
 
                         <tr>
                             <td> {{$quotation->quotation_no}}</td>
-                            <td> {{$quotation->created_by}}</td>
+                            <?php
+                                        $user = App\User::where('id', '=', $quotation->created_by)->first();
+                                    ?>  
+
+                            <td> {{$user->name}}</td>
                             <td> {{$quotation->created_at}}</td>
                             <td> {{$quotation->status}}</td>
+                            <td> 
+                                <a href="#">Accept</a>
+                                <a href="#">Terminate</a>
+                            </td>
                             @endforeach
                         </tr>
                     </tbody>
