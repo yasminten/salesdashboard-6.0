@@ -350,8 +350,9 @@ class SubscriptionsController extends Controller
     {
         $subscription = Subscription::findOrFail($id);
         $quotations = Quotations::where('subscription_id','=',$id)->get();
+        $service_details = ServiceDetail::where('subscription_id','=',$id)->first();
 
-        return view('subscriptions.show', compact('subscription', 'quotations'));
+        return view('subscriptions.show', compact('subscription', 'quotations', 'service_details'));
     }
 
     public function showsubs($id)

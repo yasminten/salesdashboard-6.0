@@ -206,132 +206,17 @@
             </div>
 
             <div class="card-body">
-                <?php $servicedetails = App\ServiceDetail::where('subscription_id', '=', $subscription->id)->first(); ?>
+                <?php $servicedetails = App\ServiceDetail::where('subscription_id', '=', $subscription->id)->get();
+                $countdetail = $servicedetails->count(); ?>
 
 
                 <!-- Detail -->
-                <div id="subscriptiondetail">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group focused">
-                                {!! Form::label('cid','Circuit ID') !!}
-                                {!! Form::text('cid',null,['class'=>'form-control',
-                                'id'=>'cid','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('network_type','Network Type') !!}
-                                {!! Form::text('network_type',null,['class'=>'form-control',
-                                'id'=>'network_type','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('network_owner','Network Owner') !!}
-                                {!! Form::text('network_owner',null,['class'=>'form-control',
-                                'id'=>'network_owner','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group focused">
-                                {!! Form::label('rfs_date','RFS Date') !!}
-                                {!! Form::text('rfs_date',null,['class'=>'form-control',
-                                'id'=>'rfs_date','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group focused">
-                                {!! Form::label('activation_date','Activation Date') !!}
-                                {!! Form::text('activation_date',null,['class'=>'form-control',
-                                'id'=>'activation_date','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group focused">
-                                {!! Form::label('end_date','End Date') !!}
-                                {!! Form::text('end_date',null,['class'=>'form-control',
-                                'id'=>'end_date','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('subscription_fee','Subscription Fee') !!}
-                                {!! Form::text('subscription_fee',null,['class'=>'form-control',
-                                'id'=>'subscription_fee','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('installation_fee','Installation Fee') !!}
-                                {!! Form::text('installation_fee',null,['class'=>'form-control',
-                                'id'=>'installation_fee','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('additional_fee','Additional Fee') !!}
-                                {!! Form::text('additional_fee',null,['class'=>'form-control',
-                                'id'=>'additional_fee','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('notes','Notes') !!}
-                                {!! Form::text('notes',null,['class'=>'form-control',
-                                'id'=>'notes','readonly' =>'readonly' ]) !!}
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('A_End','A-End') !!}
-                                {!! Form::textarea('A_End',null,['class'=>'form-control', 'id' => 'A_End', 'rows' =>
-                                5,'readonly' =>'readonly'])
-                                !!}
-
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group focused">
-                                {!! Form::label('B__End','B-End') !!}
-                                {!! Form::textarea('B__End',null,['class'=>'form-control', 'id' => 'B__End', 'rows' =>
-                                5,'readonly' =>'readonly'])
-                                !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @if($countdetail ==0)
+                    No Data
+                @else
+                    @include('subscriptions._subsdetail')
+                @endif
+                
             </div>
 
 
