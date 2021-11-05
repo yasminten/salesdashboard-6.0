@@ -5,17 +5,28 @@ namespace App\Http\Controllers;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\DailyActivity;
 
-class DailyActivitiesController extends Controller
+
+class DailyActivityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return View('daily_activities.index');
+        $today = Carbon::now();
+
+        $dailys = DB::table('daily_activity')
+        ->select('client_name','building','floor','address','phone','pic','remarks')
+        ->whereDate('created_at','=',$today)
+        ->orderBy('created_at')
+        ->get();
+
+        return view('daily_activity.index',compact('dailys'));
     }
 
     /**
@@ -25,7 +36,8 @@ class DailyActivitiesController extends Controller
      */
     public function create()
     {
-        return view('daily_activities.create');
+        
+        return view('daily_activity.create');
     }
 
     /**
@@ -36,7 +48,29 @@ class DailyActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $created_by = auth()->user()->id;
+
+            // Storing Daily Activity
+            $dailyActivityData = DailyActivity::create([
+                'client_name' => $request->client_name,
+                'building' => $request->building,
+                'floor' => $request->floor,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'pic' => $request->pic,
+                'created_by' => $created_by,
+                'remarks' => $request->remarks
+            ]);
+
+
+            return redirect(action('DailyActivityController@index'));
+        } catch (\Exception $e) {
+
+            dd($e);
+
+            return redirect(action('DailyActivityController@index'));
+        }
     }
 
     /**

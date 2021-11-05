@@ -77,10 +77,19 @@
         </li>
 
          <!-- Nav Item - Services -->
-         <li class="nav-item {{ Nav::isRoute('services') }}">
+        <li class="nav-item {{ Nav::isRoute('services') }}">
             <a class="nav-link" href="{{ route('services') }}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>{{ __('Services') }}</span>
+            </a>
+        </li>
+
+        {{-- {{ Nav::isRoute('dailyActivities') }} --}}
+        {{-- {{ route('dailyActivities') }} --}}
+        <li class="nav-item {{ Nav::isRoute('daily_activity') }} ">
+            <a class="nav-link" href="{{ route('daily_activity') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>{{ __('Daily Activity') }}</span>
             </a>
         </li>
 

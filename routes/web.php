@@ -61,3 +61,10 @@ Route::prefix('services')->group(function () {
     Route::put('/create', 'ServicesController@store')->name('services.store');
     Route::put('/edit/{id}', 'ServicesController@edit')->name('services.edit');
 });
+
+Route::prefix('daily_activity')->group(function () {
+    Route::get('/','DailyActivityController@index')->name('daily_activity');
+    Route::get('/create','DailyActivityController@create')->name('daily_activity.create');
+    Route::post('/create','DailyActivityController@store')->name('daily_activity.store');
+    // Route::get('/edit/{id}','DailyActivityController@edit')->name('daily_activity.edit');
+});
