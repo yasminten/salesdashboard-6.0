@@ -41,7 +41,7 @@
                     <div class="col-sm-12">
                         <div class="form-group focused">
                             {!! Form::label('subscription_id','Subscription ID') !!}
-                            {!! Form::text('subscription_id',$subscription->id,['class'=>'form-control',
+                            {!! Form::text('subscription_id',$quotation->subscription_id,['class'=>'form-control',
                             'id'=>'subscription_id','readonly' =>'readonly' ]) !!}
 
                         </div>
@@ -112,8 +112,8 @@
                     <div class="col-sm-6">
                         <div class="form-group focused">
                             {!! Form::label('subscription_fee','Subscription Fee') !!}
-                            {!! Form::text('subscription_fee',null,['class'=>'form-control',
-                            'id'=>'subscription_fee' ]) !!}
+                            {!! Form::text('subscription_fee',$quotation->subscription_fee,['class'=>'form-control',
+                            'id'=>'subscription_fee' ,'readonly' =>'readonly']) !!}
 
                         </div>
                     </div>
@@ -121,8 +121,8 @@
                     <div class="col-sm-6">
                         <div class="form-group focused">
                             {!! Form::label('installation_fee','Installation Fee') !!}
-                            {!! Form::text('installation_fee',null,['class'=>'form-control',
-                            'id'=>'installation_fee' ]) !!}
+                            {!! Form::text('installation_fee',$quotation->installation_fee,['class'=>'form-control',
+                            'id'=>'installation_fee','readonly' =>'readonly' ]) !!}
 
                         </div>
                     </div>
@@ -133,8 +133,8 @@
                     <div class="col-sm-6">
                         <div class="form-group focused">
                             {!! Form::label('additional_fee','Additional Fee') !!}
-                            {!! Form::text('additional_fee',null,['class'=>'form-control',
-                            'id'=>'additional_fee' ]) !!}
+                            {!! Form::text('additional_fee',$quotation->additional_fee,['class'=>'form-control',
+                            'id'=>'additional_fee' ,'readonly' =>'readonly']) !!}
 
                         </div>
                     </div>

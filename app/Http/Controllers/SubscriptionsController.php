@@ -91,10 +91,20 @@ class SubscriptionsController extends Controller
 
     public function createDetails($id)
     {
-        $subscription = Subscription::findorfail($id)->first();
+        $subscription_id = $id;
+        $quotation = Quotations::where('subscription_id', '=', $subscription_id)->first();
+        $quotation_id = $quotation->id;
 
+        $subscription = Subscription::findOrFail($id);
+
+        $subscription->update(['status' => 4]);
+        $subscription->save();
+
+
+        $quotation->update(['status' => 2]);
+        $quotation->save();
         
-        return view('subscriptions._details', compact('subscription'));
+        return view('subscriptions._details', compact('subscription_id', 'quotation', 'quotation_id'));
     }
 
     public function createQuotations($id)
@@ -348,6 +358,7 @@ class SubscriptionsController extends Controller
 
     public function show($id)
     {
+
         $subscription = Subscription::findOrFail($id);
         $quotations = Quotations::where('subscription_id','=',$id)->get();
         $service_details = ServiceDetail::where('subscription_id','=',$id)->first();

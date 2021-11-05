@@ -47,6 +47,7 @@ Route::prefix('subscriptions')->group(function () {
     Route::get('/create', 'SubscriptionsController@create')->name('subscriptions.create');
     Route::post('/create', 'SubscriptionsController@store')->name('subscriptions.store');
     Route::get('/details/{id}', 'SubscriptionsController@createDetails')->name('subscriptions.details');
+    
     Route::post('/details', 'SubscriptionsController@storeDetails')->name('subscriptions.storedetails');
     Route::get('/quotations/{id}', 'SubscriptionsController@createQuotations')->name('subscriptions.quotations');
     Route::post('/quotations', 'SubscriptionsController@storeQuotations')->name('subscriptions.storequotations');

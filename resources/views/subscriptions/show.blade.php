@@ -284,12 +284,22 @@
                             <td> {{$quotation->created_at}}</td>
 
                             <?php $status = App\StatusList::where('category', 'quotation')->where('variable', $quotation->status)->first(); ?>
-
                             <td> {{$status->name}}</td>
-                            <td> 
-                                <a href="#">Accept</a>
-                                <a href="#">Terminate</a>
-                            </td>
+
+
+                            @if($quotation->status == 1)
+                                <td> 
+                                    <a href="{{ action('SubscriptionsController@createDetails',['id' => $subscription->id]) }}">Accept</a>
+                                    <a href="#">Terminate</a>
+                                </td>
+                            @elseif($quotation->status == 0)
+                                <td> 
+                                    <a href="{{ action('SubscriptionsController@createQuotations',['id' => $subscription->id]) }}">Create New Quotation</a>
+                                </td>
+                            @else
+                                <td>finalized</td>
+                            @endif
+                            
                             @endforeach
                         </tr>
                     </tbody>
