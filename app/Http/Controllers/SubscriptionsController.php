@@ -351,7 +351,7 @@ class SubscriptionsController extends Controller
         $subscription = Subscription::findOrFail($id);
         $quotations = Quotations::where('subscription_id','=',$id)->get();
 
-        return view('subscriptions.show', compact('subscription', 'quotations', 'servicedetail', 'charges_details', 'terminationPoint', 'settings'));
+        return view('subscriptions.show', compact('subscription', 'quotations'));
     }
 
     public function showsubs($id)

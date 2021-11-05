@@ -43,10 +43,10 @@
                             <div class="col-lg-6">
                                 <div class="form-group focused">
                                     <?php
-                                        $customer = App\Customer::where('id', '=', $subscription->member_id)->get();
+                                        $customer = App\Customer::where('id', '=', $subscription->member_id)->first();
                                     ?>
-                                    {!! Form::label('member_id','Customers Code') !!}
-                                    {!! Form::text('member_id',$subscription->member_id,['class'=>'form-control', 'id'
+                                    {!! Form::label('member_id','Customers') !!}
+                                    {!! Form::text('member_id',$customer->name,['class'=>'form-control', 'id'
                                     =>
                                     'member_id','readonly' =>
                                     'readonly']) !!}
@@ -67,16 +67,13 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group focused">
-                                    <?php $services = App\Service::all();
-                                    $serviceArray = [];
-                                    foreach ($services as $service) {
-                                        $serviceArray[$service['id']] = $service['name'];
-                                    }
-                                    ?>
+                                    <?php
+                                        $service = App\Service::where('id', '=', $subscription->service_id)->first();
+                                    ?>  
                                     {!! Form::label('service_id','Services') !!}
 
 
-                                    {!! Form::text('service_id',$subscription->service_id,['class'=>'form-control',
+                                    {!! Form::text('service_id',$service->name,['class'=>'form-control',
                                     'id'=>'service_id','readonly' =>'readonly' ]) !!}
                                 </div>
                             </div>
