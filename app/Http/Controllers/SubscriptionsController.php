@@ -441,11 +441,10 @@ class SubscriptionsController extends Controller
     {
         $subscription = Subscription::findOrFail($id);
         $servicedetail = ServiceDetail::where('id', $subscription->servicedetail_id)->first();
-        $terminationPoints = TerminationPoint::where('servicedetail_id', $servicedetail->id)->first();
         $charges_detail = ChargesDetail::where('servicedetail_id', $servicedetail->id)->first();
 
 
-        return view('subscriptions.change', compact('subscription','servicedetail', 'terminationPoints', 'charges_detail'));
+        return view('subscriptions.change', compact('subscription','servicedetail', 'charges_detail'));
     }
 
     public function modify($id, Request $request)
