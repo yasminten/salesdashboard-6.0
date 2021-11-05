@@ -38,6 +38,7 @@ Route::prefix('customers')->group(function () {
     Route::get('/', 'CustomersController@index')->name('customers');
     Route::get('/show', 'CustomersController@show')->name('cust-show');
     Route::get('/create', 'CustomersController@create')->name('cust-create');
+    Route::get('/create/{id}', 'CustomersController@create')->name('cust-create');
     Route::get('/edit/{id}', 'CustomersController@edit')->name('cust-edit');
 });
 

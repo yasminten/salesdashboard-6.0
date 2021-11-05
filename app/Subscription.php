@@ -47,7 +47,6 @@ class Subscription extends Model
         return $this->belongsTo('App\Customer', 'member_id');
     }
 
-
     public function service()
     {
         return $this->belongsTo('App\Service', 'service_id');
@@ -62,4 +61,6 @@ class Subscription extends Model
     {
         return $this->belongsTo('App\ServiceDetail', 'servicedetail_id');
     }
+
+    // 1 to many $this->hasMany
 }

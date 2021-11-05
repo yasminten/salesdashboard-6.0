@@ -38,8 +38,9 @@ class CustomersController extends Controller
         return view('customers.index', compact('widget', 'customers', 'drp_placeholder'));
     }
 
-    public function create()
+    public function create($id)
     {
+        dd($id);
         return view('customers.create');
     }
 

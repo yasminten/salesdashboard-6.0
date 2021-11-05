@@ -21,7 +21,7 @@ class DailyActivityController extends Controller
         $today = Carbon::now();
 
         $dailys = DB::table('daily_activity')
-        ->select('client_name','building','floor','address','phone','pic','remarks')
+        ->select('id','client_name','building','floor','address','phone','pic','remarks')
         ->whereDate('created_at','=',$today)
         ->orderBy('created_at')
         ->get();

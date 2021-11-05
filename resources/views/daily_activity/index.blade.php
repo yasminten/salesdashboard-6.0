@@ -90,7 +90,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info" style="background-color: #151A48;">
-                                        <a href="{{ action('CustomerController@create',['id' => $daily->id]) }}" style="color:white;">
+                                        <a href="{{ url('/customers/create/'.$daily->id) }}" style="color:white;">
                                             Add Cust
                                         </a>
                                     </button>
