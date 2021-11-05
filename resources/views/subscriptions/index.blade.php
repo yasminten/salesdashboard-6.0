@@ -58,7 +58,10 @@
                             <td> {{ $subscription->customer->member_code}}</td>
                             <td>{{ $subscription->customer->name}}</td>
                             <td>{{ $subscription->service->name}}</td>
-                            <td>{{ $subscription->status}}</td>
+
+                            <?php $status = App\StatusList::where('category', 'subscription')->where('variable', $subscription->status)->first(); ?>
+
+                            <td>{{ $status->name}}</td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info">

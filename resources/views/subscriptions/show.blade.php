@@ -397,7 +397,10 @@
 
                             <td> {{$user->name}}</td>
                             <td> {{$quotation->created_at}}</td>
-                            <td> {{$quotation->status}}</td>
+
+                            <?php $status = App\StatusList::where('category', 'quotation')->where('variable', $quotation->status)->first(); ?>
+
+                            <td> {{$status->name}}</td>
                             <td> 
                                 <a href="#">Accept</a>
                                 <a href="#">Terminate</a>

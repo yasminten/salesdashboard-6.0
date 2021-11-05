@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatusQuotationTable extends Migration
+class CreateStatusListTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateStatusQuotationTable extends Migration
      */
     public function up()
     {
-        Schema::create('status_quotation', function (Blueprint $table) {
+        Schema::create('status_list', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',50);
-            $table->integer('status_id');
+            $table->string('category');
+            $table->integer('variable');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateStatusQuotationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_quotation');
+        Schema::dropIfExists('status_list');
     }
 }
